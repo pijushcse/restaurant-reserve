@@ -1,9 +1,13 @@
+<?php 
+error_reporting(0);    
+?>
+
 <!doctype html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>Untitled Page</title>
+    <title>Sign In</title>
     <meta name="generator" content="WYSIWYG Web Builder 12 Trial Version - http://www.wysiwygwebbuilder.com">
     <link href="signIn.css" rel="stylesheet">
     <link href="signIn_up.css" rel="stylesheet">
@@ -28,23 +32,25 @@ $customerName = '';
 
             $conn = new mysqli($servername, $username, $password, $dbName);        
 
-            $sqlCheck = "SELECT  secure_login_id as name FROM user_details WHERE UserName=UPPER('".$userIdName."') and password='".$userPassword."' ";
+            $sqlCheck = "SELECT  secure_login_id as name FROM user_details WHERE UserName= SHA2(UPPER('".$userIdName."'), 512) and password=SHA2('".$userPassword."', 512) ";
             $checkResult = $conn->query($sqlCheck);
             if ($checkResult->num_rows > 0) {
                 if ($row = $checkResult->fetch_assoc()) {
                     $customerName = $row["name"];
                     header('Location: ./index.php?secureid='.$customerName);
-            }
-           }
+             } 
+           } else {
+                echo '<script language="javascript">';
+                echo 'alert("Invalid username/ password. Please try again.")';
+                echo '</script>';            
+             }
         }
     }
 
 ?>
 
 <body>
-    <a href="http://www.wysiwygwebbuilder.com" target="_blank">
-        <img src="images/builtwithwwb12.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;border-width:0;z-index:250">
-    </a>
+
     <div id="wb_Form1" style="position:absolute;left:12px;top:12px;width:1149px;height:900px;z-index:11;">
         <form name="Form1" method="post" action="signIn_up.php" id="Form1">
             <input type="text" id="userName" style="position:absolute;left:213px;top:241px;width:391px;height:16px;line-height:16px;z-index:0;"
@@ -75,6 +81,24 @@ $customerName = '';
             <div id="wb_Text4" style="position:absolute;left:429px;top:380px;width:142px;height:16px;z-index:9;">
                 <span style="color:#000000;font-family:Arial;font-size:13px;">
                     <a href="passwordRecovery.html">Forget Your Password</a>
+                </span>
+            </div>
+            <div id="wb_Form3"style="position:absolute;left:100px;top:65px;width:1100px;height:63px;z-index:9;">
+        <form name="Form3" method="post" action="mailto:yourname@yourdomain.com" enctype="text/plain" id="Form3">
+            <div id="wb_Text1" style="position:absolute;left:1px;top:550px;width:500px;height:600px;z-index:2;">
+                <span style="color:#00008B;font-family:Georgia;font-size:16px;">
+                    <a href="index.php">Home</a>
+                </span>
+            </div>
+            <div id="wb_Text2" style="position:absolute;left:100px;top:550px;width:78px;height:18px;z-index:3;">
+                <span style="color:#00008B;font-family:Georgia;font-size:16px;">Offers</span>
+            </div>
+            <div id="wb_Text3" style="position:absolute;left:200px;top:550px;width:63px;height:18px;z-index:4;">
+                <span style="color:#00008B;font-family:Georgia;font-size:16px;">Resorts</span>
+            </div>
+            <div id="wb_Text4" style="position:absolute;left:300px;top:550px;width:89px;height:18px;z-index:5;">
+                <span style="color:#00008B;font-family:Georgia;font-size:16px;">
+                    <a href="ContactUs.html">Contact Us</a>
                 </span>
             </div>
 

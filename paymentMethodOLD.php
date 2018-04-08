@@ -38,29 +38,66 @@
  <script>
         console.log( "<?php echo $checkInDate.' - '.$checkInDate; ?>");
 
+        function bookingDetails() {
+        alert ("Go back to booking details first.")
+    }
+        function paymentRequired() {
+            alert ("Payment information is required to confirm a booking.")
+         }
  </script>
 
 
 <body>
+ 
+<div id="wb_Form2" style="position:absolute;left:0px;top:181px;width:1226px;height:34px;z-index:6;">
+                <form name="Form2" method="post" action="mailto:yourname@yourdomain.com" enctype="text/plain" id="Form2">
+                    <div id="wb_Text2" style="position:absolute;left:97px;top:6px;width:58px;height:20px;z-index:0;">
+                        <span style="color:#0000FF;font-family:Georgia;font-size:17px;">Offers</span>
+                    </div>
+                    <div id="wb_Text3" style="position:absolute;left:178px;top:6px;width:61px;height:20px;z-index:1;">
+                        <span style="color:#0000FF;font-family:Georgia;font-size:17px;">Resorts</span>
+                    </div>
+                    <div id="wb_Text4" style="position:absolute;left:261px;top:5px;width:105px;height:20px;z-index:2;">
+                        <span style="color:#0000FF;font-family:Georgia;font-size:17px;"><a href="ContactUS.html">Contact Us</a></span>
+                    </div>
+                    <div id="wb_Text1" style="position:absolute;left:15px;top:6px;width:82px;height:20px;z-index:3;">
+                        <span style="color:#0000FF;font-family:Georgia;font-size:17px;"><a href="index.php">Home</a></span>
+                    </div>
+                </form>
+            </div>
 
-    <div id="wb_Form1" style="position:absolute;left:0px;top:0px;width:1226px;height:967px;z-index:23;">
-        <form name="Form1" method="post" action="mailto:yourname@yourdomain.com" enctype="text/plain" id="Form1">
-            <div id="wb_TabMenu1" style="position:absolute;left:0px;top:231px;width:1224px;height:36px;z-index:4;overflow:hidden;">
+         <form id="roomChoose" method="POST" action=".2bookingDetailsTab.php">  
+         <div id="wb_TabMenu1" style="position:absolute;left:0px;top:231px;width:1224px;height:36px;z-index:5;overflow:hidden;">
                 <ul id="TabMenu1">
                     <li>
-                        <a href="./1ChooseRoom.php">1 Choose your Room </a>
+                        <a style="background-color: palegoldenrod"  href="javascript:bookingDetails();">  Choose your Room </a>
                     </li>
                     <li>
-                        <a href="./2bookingDetailsTab.php">2 Enter Booking Details</a>
+                        <a style="background-color: palegoldenrod" onclick="document.getElementById('bookingDetails').submit();"> Enter Booking Details</a>
                     </li>
                     <li>
-                        <a href="./3paymentMethod.php">3 Enter Payment Method</a>
+                        <a style="background-color: chartreuse"  href="#" > Enter Payment Method</a>
                     </li>
                     <li>
-                        <a href="#">4 Booking Confirmation </a>
+                        <a href="javascript:paymentRequired();"> Booking Confirmation </a>
                     </li>
                 </ul>
             </div>
+
+                       <input type="hidden" id="roomId" name="roomId" value="<?php echo $roomId; ?>" />
+                       <input type="hidden" id="checkInDate" name="checkInDate" value="<?php echo $checkInDate; ?>" />
+                       <input type="hidden" id="checkOutDate" name="checkOutDate" value="<?php echo $checkOutDate; ?>"  />
+                       <input type="hidden" id="noOfRoom" name="noOfRoom" value="<?php echo $noOfRoom; ?>"  />
+                       <input type="hidden" id="noOfAdults" name="noOfAdults" value="<?php echo $noOfAdults; ?>"  />
+                       <input type="hidden" id="noOfKids" name="noOfKids"  value="<?php echo $noOfKids; ?>"  />
+                       <input type="hidden" id="addressId" name="addressId"  value="<?php echo $addressId; ?>"  />
+                       <input type="hidden" id="customerName" name="customerName"  value="<?php echo $customer_name; ?>"  />
+                       <input type="hidden" id="customerEmail" name="customerName"  value="<?php echo $customer_email; ?>"  />
+                       <input type="hidden" id="customer_phone" name="customerName"  value="<?php echo $customer_phone; ?>"  />
+
+        </form>
+
+
             <div id="wb_Form2" style="position:absolute;left:0px;top:181px;width:1226px;height:34px;z-index:5;">
                 <form name="Form2" method="post" action="mailto:yourname@yourdomain.com" enctype="text/plain" id="Form2">
                     <div id="wb_Text2" style="position:absolute;left:97px;top:6px;width:58px;height:20px;z-index:0;">
@@ -151,7 +188,7 @@
         <span style="color:#0000CD;font-family:Georgia;font-size:20px;">Welcome!!!</span>
     </marquee>
     <picture id="wb_Picture1" style="position:absolute;left:0px;top:0px;width:1227px;height:137px;z-index:25">
-        <img src="images/images.jpg" id="Picture1" alt="" srcset="" style="position:absolute;left:0px;top:0px;width:1227px;height:150px;z-index:25">
+        <img src="images/images.jpg" id="Picture1" alt="" srcset="">
     </picture>
 </body>
 
